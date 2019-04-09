@@ -1,0 +1,13 @@
+diff --git a/usr/local/lib/node_modules/@semantic-release/git/lib/git.js b/usr/local/lib/node_modules/@semantic-release/git/lib/git.js
+index 3f02846..59e52ec 100644
+--- a/usr/local/lib/node_modules/@semantic-release/git/lib/git.js
++++ b/usr/local/lib/node_modules/@semantic-release/git/lib/git.js
+@@ -11,7 +11,7 @@ const debug = require('debug')('semantic-release:git');
+  */
+ async function filterModifiedFiles(files, execaOpts) {
+   return files.length > 0
+-    ? (await execa.stdout('git', ['ls-files', '-m', '-o', ...files], execaOpts))
++    ? (await execa.stdout('git', ['ls-files', '-m', '--exclude-standard', ...files], execaOpts))
+         .split('\n')
+         .map(file => file.trim())
+         .filter(file => Boolean(file))

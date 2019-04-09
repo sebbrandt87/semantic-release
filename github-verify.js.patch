@@ -1,0 +1,20 @@
+diff --git a/usr/local/lib/node_modules/@semantic-release/github/lib/verify.js b/usr/local/lib/node_modules/@semantic-release/github/lib/verify.js
+index 8b1617f..0ee507c 100644
+--- a/usr/local/lib/node_modules/@semantic-release/github/lib/verify.js
++++ b/usr/local/lib/node_modules/@semantic-release/github/lib/verify.js
+@@ -10,6 +10,7 @@ const isNonEmptyString = value => isString(value) && value.trim();
+ const isStringOrStringArray = value => isNonEmptyString(value) || (isArray(value) && value.every(isNonEmptyString));
+ const isArrayOf = validator => array => isArray(array) && array.every(value => validator(value));
+ const canBeDisabled = validator => value => value === false || validator(value);
++const isTrue = validator => value => value === true;
+
+ const VALIDATORS = {
+   proxy: proxy =>
+@@ -23,6 +24,7 @@ const VALIDATORS = {
+   labels: canBeDisabled(isArrayOf(isNonEmptyString)),
+   assignees: isArrayOf(isNonEmptyString),
+   releasedLabels: canBeDisabled(isArrayOf(isNonEmptyString)),
++  draft: isTrue,
+ };
+
+ module.exports = async (pluginConfig, context) => {

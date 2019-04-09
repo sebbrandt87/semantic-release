@@ -1,0 +1,18 @@
+diff --git a/usr/local/lib/node_modules/@semantic-release/github/lib/resolve-config.js b/usr/local/lib/node_modules/@semantic-release/github/lib/resolve-config.js
+index 6be84e6..15e02b6 100644
+--- a/usr/local/lib/node_modules/@semantic-release/github/lib/resolve-config.js
++++ b/usr/local/lib/node_modules/@semantic-release/github/lib/resolve-config.js
+@@ -12,6 +12,7 @@ module.exports = (
+     labels,
+     assignees,
+     releasedLabels,
++    draft,
+   },
+   {env}
+ ) => ({
+@@ -26,4 +28,5 @@ module.exports = (
+   labels: isNil(labels) ? ['semantic-release'] : labels === false ? false : castArray(labels),
+   assignees: assignees ? castArray(assignees) : assignees,
+   releasedLabels: isNil(releasedLabels) ? ['released'] : releasedLabels === false ? false : castArray(releasedLabels),
++  draft: draft || false,
+ });
