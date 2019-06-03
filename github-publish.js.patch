@@ -1,14 +1,22 @@
 diff --git a/usr/local/lib/node_modules/@semantic-release/github/lib/publish.js b/usr/local/lib/node_modules/@semantic-release/github/lib/publish.js
-index eb7473b..292a1d8 100644
+index df0fa48..0ff9234 100644
 --- a/usr/local/lib/node_modules/@semantic-release/github/lib/publish.js
 +++ b/usr/local/lib/node_modules/@semantic-release/github/lib/publish.js
-@@ -18,7 +18,7 @@ module.exports = async (pluginConfig, context) => {
+@@ -15,7 +15,7 @@ module.exports = async (pluginConfig, context) => {
+     nextRelease: {gitTag, notes},
+     logger,
+   } = context;
 -  const {githubToken, githubUrl, githubApiPathPrefix, proxy, assets} = resolveConfig(pluginConfig, context);
 +  const {githubToken, githubUrl, githubApiPathPrefix, proxy, assets, draft} = resolveConfig(pluginConfig, context);
    const {name: repo, owner} = parseGithubUrl(repositoryUrl);
    const github = getClient({githubToken, githubUrl, githubApiPathPrefix, proxy});
--  const release = {owner, repo, tag_name: gitTag, name: gitTag, target_commitish: branch, body: notes}; // eslint-disable-line camelcase
-+  const release = {owner, repo, tag_name: gitTag, name: gitTag, target_commitish: branch, body: notes, draft: draft}; // eslint-disable-line camelcase
 
-   debug('release owner: %o', owner);
-   debug('release repo: %o', repo);
+@@ -27,6 +27,7 @@ module.exports = async (pluginConfig, context) => {
+     name: gitTag,
+     target_commitish: branch,
+     body: notes,
++    draft: draft,
+   };
+   /* eslint-enable */
+
+
